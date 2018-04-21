@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/login.css">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>登录</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.fullPage.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="main">
+			<div class="container container-custom">
+	        <div class="row all-login">
+	            <div class="login-banner col-sm-6 col-md-7 col-lg-7 hidden-xs">
+	          		<a href="javascript:void()">
+	          			<img src="./images/login-banner.png" class="img-responsive">
+	          		</a>
+	            </div>
+	            <div class="login-alls col-xs-12 col-sm-6 col-md-5 col-lg-5">
+		            <div class="login-all">
+		                <h3>帐号登录</h3>
+		                <div class="user-info">
+			                <div class="user-part">
+			                    <form>
+				                    <input v-model="phone" class="user-name" tabindex="1" placeholder="输入用户名/邮箱/手机号">
+				                    <input v-model="password" tabindex="2" placeholder="输入密码" class="pass-word" type="password" autocomplete="off">
+				                    <div class="row forget-password clearfix">
+				                    	<span class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				                        	<input type="checkbox"  value="true" checked="checked" class="auto-login" tabindex="3">
+				                        	<label for="rememberMe">下次自动登录</label>
+				                        </span>
+				                        <span class="col-xs-6 col-sm-6 col-md-6 col-lg-6 forget tracking-ad" data-mod="popu_26">
+				                        	<a href="javascript:void()" tabindex="4" >忘记密码</a>
+				                        </span>
+				                    </div>
+									<input @click="clickLogin" class="logging" value="登 录" tabindex="5" type="button">
+								</form>
+			                </div>
+		                </div>
+			            <div class="third-part tracking-ad" data-mod="popu_27">
+			              	<span style="width: 257px;">第三方帐号登录</span>
+			              	<a  href="javascript:void()" class="qq" target="_blank"></a>
+			              	<a href="javascript:void()" class="sina" target="_blank"></a>
+			              	<a href="javascript:void()" class="baidu" target="_blank"></a>
+			              	<a href="javascript:void()" class="cc" target="_blank"></a>
+			              	<a href="javascript:void()" class="github" target="_blank"></a>
+			                <div class="register-now">
+			                	<span>还没有CSDN帐号？</span>
+				                <span class="register tracking-ad" data-mod="popu_28">
+				                	<a href="./register.html" data-kuick="{&quot;act&quot;:&quot;csdn05&quot;,&quot;desc&quot;:&quot;立即注册&quot;}" target="_blank">立即注册</a>
+				                </span>
+		               		</div>
+	               		</div>
+        			</div>
+       			</div>
+    		</div>
+  		</div>
+  		<div class="pub_fo">
+  			<div id="pub_footerall" class="pub_footer_new">
+  				<dl> 
+  					<dd class="foot_sub_menu">
+  						<a href="javascript:void()">公司简介</a><span>|</span>
+  						<a href="javascript:void()" target="_blank">招贤纳士</a><span>|</span>
+  						<a href="javascript:void()" target="_blank">广告服务</a><span>|</span>
+  						<a href="javascript:void()" target="_blank">联系方式</a><span>|</span>
+  						<a href="javascript:void()" target="_blank">版权声明</a><span>|</span>
+  						<a href="javascript:void()" target="_blank">法律顾问</a><span>|</span>
+  						<a href="javascript:void()">问题报告</a>
+  						<span>|</span>
+  						<a href="javascript:void()" target="_blank">合作伙伴</a><span>|</span>
+  						<a href="javascript:void()" target="_blank">论坛反馈</a>
+  					</dd>
+  					<dd class="foot_contact">
+  						<a href="#" target="_blank" class="qq qqcustomer_s">网站客服</a>
+  						<a href="javascript:void()" target="_blank" class="qq">杂志客服</a>
+  						<a href="javascript:void()" target="_blank" class="weibo">微博客服</a>
+  					</dd>
+  					<dd class="foot_copyright">
+  						<span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span>
+  						<span class="interval">|</span>
+  						<span>Copyright © 1999-2018, CSDN.NET, All Rights Reserved&nbsp;</span>
+  						<a href="javascript:void()" target="_blank">
+  							<img src="./images/gongshang_logos.gif" alt="GongshangLogo" title="">
+  						</a>
+  					</dd>
+  				</dl>
+  			</div>
+  		</div>
+	</div>
+</div>
+<script type="text/javascript" src="./js/login.js"></script>
+	
+</body>
+</html>

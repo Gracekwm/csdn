@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    </head>
+    <style type="text/css">
+        ul {
+            list-style: none;
+        }
+    	span {
+    		display: inline-block;
+    		margin: 10px;
+    	}
+        .title li {
+            list-style: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .list li {
+            margin: 20px 0;
+        }
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+        .selected {
+            color: green;
+        }
+    </style>
+    <body>
+        <div id="main">
+        	<div>
+        		<ul class="title">
+	        		<li @click="clickGrade" :class="isShowGrade ? 'selected' : ''">{{ grade }}</li>
+	        		<li @click="clickSubject" :class="isShowSubject ? 'selected' : ''">{{ subject }}</li>
+	        		<li @click="clickType" :class="isShowType ? 'selected' : ''">{{ teacherType }}</li>
+	        	</ul>
+	        	<div v-if="condition" :class="isShowAllSelect ? 'show' : 'hide'">
+	        		<div :class="isShowGrade ? 'show' : 'hide'">
+	        			<span :class="item.isSelected ? 'selected' : ''" v-for="item in condition.grade" @click="clickItem(item)">{{ item.label }}</span>
+	        		</div>
+	        		<div :class="isShowSubject ? 'show' : 'hide'">
+	        			<span :class="item.isSelected ? 'selected' : ''" v-for="item in condition.subject" @click="clickItem(item)">{{ item.label }}</span>
+	        		</div>
+	        		<div :class="isShowType ? 'show' : 'hide'">
+	        			<span :class="item.isSelected ? 'selected' : ''" v-for="item in condition.type" @click="clickItem(item)">{{ item.label }}</span>
+	        		</div>
+	        	</div>
+        	</div>
+            <ul class="list">
+            	<li v-for="item in teacherList"><img :src="item.image">{{ item.name }}</li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            function getQuery(){
+                var str = (location.search.length > 0 ? location.search.substring(1) : ''),
+                args = {},
+                items = str.length ? str.split("&") : [],
+                item = null,
+                name = null,
+                value = null;
+                for (i=0; i < items.length; i++){
+                    item = items[i].split("=");
+                    name = decodeURIComponent(item[0]);
+                    value = decodeURIComponent(item[1]);
+                    if (name.length) {
+                        args[name] = value;
+                    }
+                }
+                return args;
+            }
+            var tab = new Vue({
+                el:"#main",
+                data: {
+                    isShowAllSelect: false,
+                	condition: null,
+                    teacherList: [],
+                    searchGrade: null,
+                    grade: '年级',
+                    isShowGrade: false,
+                    searchSubject: null,
+                    subject: getQuery().subject ? getQuery().subject : '学科',
+                    isShowSubject: false,
+                    searchType: null,
+                    teacherType: '教师类型',
+                    isShowType: false,
+
+                },
+                mounted: function(){
+                    this.searchSubject = this.getQuery().id;
+                    var data = {
+                                'subject': this.searchSubject,
+                                'offset': 0,
+                                'limit': 20
+                            }
+                	this.getList(data);
+                },
+                methods: {
+                	getQuery:function(){
+						var str = (location.search.length > 0 ? location.search.substring(1) : ''),
+						args = {},
+						items = str.length ? str.split("&") : [],
+						item = null,
+						name = null,
+						value = null;
+						for (i=0; i < items.length; i++){
+							item = items[i].split("=");
+							name = decodeURIComponent(item[0]);
+							value = decodeURIComponent(item[1]);
+							if (name.length) {
+								args[name] = value;
+							}
+						}
+						return args;
+					},
+                    getList:function(dataObj){
+                    	var that = this;
+                    	$.ajax({
+                    		'url': 'http://api.zhituteam.com/api/teacher/lists',
+                    		'type': "get",
+                    		'dataType': 'json',
+                    		'data': dataObj,
+                    		success:function(res){
+                    			that.teacherList = res.data.teacher;
+                                if(that.condition == null){
+                                    res.data.condition.grade.forEach(function(item){
+                                        item.isSelected = false;
+                                    })
+                                    res.data.condition.subject.forEach(function(item){
+                                        item.isSelected = false;
+                                    })
+                                    res.data.condition.type.forEach(function(item){
+                                        item.isSelected = false;
+                                    })
+                                    that.condition = res.data.condition;
+                                    that.condition.subject.forEach(function(k){
+                                        if(that.searchSubject == k.id){
+                                            that.subject = k.label;
+                                            k.isSelected = true;
+                                            that.isShowAllSelect = false;
+                                            that.isShowSubject = true;
+                                        }
+                                    })
+                                }
+                    		}
+                    	})
+                    },
+                    clickGrade: function(){
+                        this.isShowAllSelect = true,
+                        this.isShowGrade = true;
+                        this.isShowSubject = false;
+                        this.isShowType = false;
+                    },
+                    clickSubject: function(){
+                        this.isShowAllSelect = true,
+                        this.isShowGrade = false;
+                        this.isShowSubject = true;
+                        this.isShowType = false;
+
+                    },
+                    clickType: function(){
+                        this.isShowAllSelect = true,
+                        this.isShowGrade = false;
+                        this.isShowSubject = false;
+                        this.isShowType = true;
+                    },
+                    clickItem:function(item){
+                        this.condition.grade.forEach(function(t){
+                            t.isSelected = false;
+                        })
+                        this.condition.subject.forEach(function(t){
+                            t.isSelected = false;
+                        })
+                        this.condition.type.forEach(function(t){
+                            t.isSelected = false;
+                        })
+                        item.isSelected = true;
+
+                        this.isShowAllSelect = false;
+
+                        if(this.isShowGrade){
+                            this.grade = item.label;
+                            this.searchGrade = item.id
+                        }
+                        if(this.isShowSubject){
+                            this.subject = item.label;
+                            this.searchSubject = item.id;
+                        }
+                        if(this.isShowType){
+                            this.teacherType = item.label;
+                            this.searchType = item.id;
+                        }
+                        var data = {
+                            'grade': this.searchGrade,
+                            'type': this.searchType,
+                            'subject': this.searchSubject,
+                            'offset': 0,
+                            'limit': 20,
+                        }
+                        this.getList(data)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

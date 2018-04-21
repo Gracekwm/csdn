@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    </head>
+    <style media="screen">
+        ul {
+            list-style: none;
+        }
+        .btn {
+            border: 1px solid red;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+        }
+        .checked {
+            background: red;
+        }
+    </style>
+    <body>
+        <div id="container">
+            <ul>
+                <li v-for="item in list" @click="clickItem(item)">{{ item.name }}<span class="btn" :class="item.selected ? 'checked' : ''"></span></li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#container",
+            data: {
+                list: [],
+            },
+            mounted: function(){
+                this.getData();
+            },
+            methods: {
+                getData: function(){
+                    // $.ajax({
+                    //     'url': '',
+                    //     'type': 'get/post',
+                    //     'data': {},
+                    //     'dataType': 'json',
+                    //     'success': function(res){
+
+                    //         this.list = res.data.list
+                    //     },
+                    //     'error': function(error){
+
+                    //     }
+                    // })
+                    var list = [
+                        {
+                            'name':'王老师',
+                            'school':'北华大学',
+                        },
+                        {
+                            'name':'李老师',
+                            'school':'北华大学',
+                        },
+                        {
+                            'name':'秦老师',
+                            'school':'北华大学',
+                        },
+                        ];
+                        this.initList(list);
+                        this.list = list;
+                        console.log(this.list);
+                },
+                initList: function(resetList){
+                    resetList.forEach(function(i){
+                        i.selected = false;
+                    });
+                },
+                clickItem: function(itemData){
+                    itemData.selected = !itemData.selected;
+                }
+            }
+        })
+    </script>
+</html>

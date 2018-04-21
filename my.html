@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./css/my.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>我的CSDN</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+	<div class="head-bar">
+		<div class="head-list">
+			<img src="./images/return.png">
+		</div>
+		<div class="head-logo">
+			<img src="./images/mycsdn.png">
+		</div>
+		<div class="search-login">
+			<span class="wirte-blog right">
+				<a href="./editor.html">写博客</a>
+			</span>
+			<div class="sear">
+				<img src="./images/search.png">
+			</div>
+			<div class="login" v-show="uidShow">
+				<a href="./login.html">
+					<img src="./images/csdn.png">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="csdn-my">
+		<div class="my-top clearfix">
+			<div class="my-pic">
+				<img src="./images/autocsdn.gif">
+			</div>
+			<div class="my-name-like">
+				<h3 class="my-name">kklovablekk</h3>
+				<p class="person-intro"></p>
+				<p class="my-like">
+					<span>关注</span>
+					<span>0</span>
+					<span>粉丝</span>
+					<span>0</span>
+				</p>
+			</div>
+		</div>
+		<div class="my-own">
+			<div class="cion clearfix">
+				<span class="points">
+					<span>积分</span>
+					<span>0</span>
+					<span>C币</span>
+					<span>0</span>
+				</span>
+				<span class="less-coin">
+					<span>C币不够？点击</span>
+					<a href="javascript:void(0)">充值</a>
+				</span>
+			</div>
+			<div class="download">
+				<span class="donw">
+					<span>下载</span>
+					<span>
+						<img src="./images/down1.png">
+					</span>
+				</span>
+				<span class="blog">
+					<span>博客</span>
+					<span>
+						<img src="./images/blog1.png">
+					</span>
+				</span>
+			</div>
+		</div>
+		<div class="my-wap">
+			<ul>
+				<li>
+					<a href="personal.html">
+						<span>我的博客</span>
+						<span><img src="./images/right.png"></span>
+					</a>
+				</li>
+				<li>
+					<a href="./collection.html">
+						<span>我的收藏</span>
+						<span><img src="./images/right.png"></span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)">
+						<span>我的下载</span>
+						<span><img src="./images/right.png"></span>
+					</a>
+				</li>
+				<li>
+					<a href="attention.html">
+						<span>我的关注</span>
+						<span><img src="./images/right.png"></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="out-login" @click="outLogin">
+			<a href="javascript:void(0)">退出登录</a>
+		</div>
+	</div>
+ </div>
+<script type="text/javascript" src="./js/my.js"></script>
+</body>
+</html>

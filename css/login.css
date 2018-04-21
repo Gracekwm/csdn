@@ -1,0 +1,155 @@
+html,body{
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333;
+    background-color: #fff;
+}
+html,body{
+	margin: 0;
+	padding: 0;
+}
+.clearfix::after{
+	height: 0;
+	display: block;
+	content: "";
+	clear: both;
+}
+.main{
+	padding: 48px 0 48px 0;
+    border-top: 1px solid #e9e9e9;
+    font-size: 12px;
+}
+.row{
+	margin-left: 0;
+	margin-right: 0;
+}
+.all-login .login-alls {
+    float: left;
+}
+.login-all{
+	background: #fefefe;
+    border: 1px solid #d5dce5;
+    border-radius: 5px;
+}
+.main .login-all h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #4d5e73;
+    padding: 25px 30px 15px 30px;
+}
+.main .user-info {
+    padding: 0 30px;
+}
+.user-info form {
+    margin: 0;
+    padding: 0;
+    padding-right: 8px;
+}
+.user-name,.pass-word{
+	background: #fff;
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border: 1px solid #d5dce5;
+    margin-bottom: 20px;
+    text-indent: 23px;
+    outline: 0;
+    font-size: 1.25em;
+    border-radius: 3px;
+}
+.forget-password {
+    margin-top: 10px;
+    color: #4d5e73;
+    font-size: 1em;
+}
+.forget-password .forget {
+    text-align: right;
+}
+.forget-password a {
+    color: #4d5e73;
+    text-decoration: none;
+}
+.logging {
+    background: #c90a16;
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5em;
+    text-decoration: none;
+    clear: both;
+    width: 100%;
+    border: solid 1px #c90000;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #fff inset;
+}
+.third-part {
+	margin-top: 40px;
+    padding: 20px 52px 35px 30px;
+    border-top: 2px solid #eee;
+}
+.third-part span {
+    display: block;
+    font-size: 1.083em;
+    color: #666;
+    margin-bottom: 11px;
+}
+.third-part .qq, .third-part .sina, .third-part .baidu,.third-part .cc,.third-part .github{
+	display: inline-block;
+    background-image: url(../images/login-third-party-new.png);
+    background-repeat: no-repeat;
+    margin-right: 5px;
+    width: 32px;
+    height: 32px;
+}
+.third-part .sina {
+    background-position: -74px 0;
+}
+.third-part .baidu {
+    background-position: -112px 0;
+}
+.third-part .cc {
+    background-position: -150px 0;
+}
+.third-part .github {
+    background-position: -187px 0;
+}
+.third-part .register-now {
+    margin-top: 20px;
+}
+.third-part .register-now span {
+	display: inline-block;
+}
+.third-part .register-now .register {
+	display: inline-block;
+    text-align: right;
+}
+.third-part .register-now .register a {
+    margin-left: 15px;
+}
+.pub_footer_new .foot_sub_menu {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+.pub_footer_new .foot_sub_menu a {
+    color: #666;
+    font-family: 'microsoft yahei';
+    text-decoration: none;
+    display: block;
+    height: 20px;
+    float: left;
+    margin-bottom: 10px;
+}
+.pub_footer_new .foot_sub_menu span {
+    color: #d1d1d1;
+    padding: 0 8px;
+    display: block;
+    float: left;
+    height: 20px;
+    margin-bottom: 10px;
+}

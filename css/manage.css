@@ -1,0 +1,16 @@
+html, body{
+	background-color: #f4f4f4;
+}
+html, body{
+	margin: 0;
+	padding: 0;	
+	position: relative;
+}
+.main{
+	padding: 40px;
+    position: fixed;
+    background: #fff;
+    width: 600px;
+    margin: 200px; auto;
+    z-index: 100;
+}

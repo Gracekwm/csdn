@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    </head>
+    <body>
+        <div id="main">
+
+        </div>
+        <script type="text/javascript">
+            var vueAjax = new Vue({
+                el: '#main',
+                data: {
+                    list: []
+                },
+                mounted: function(){
+                    this.getData();
+                },
+                methods: {
+                    getData: function(){
+                        var that = this;
+                        $.ajax({
+                            url: 'http://api.zhituteam.com/api/index',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(res){
+                                console.log(this);
+                                console.log(res.data.teacher);
+                                console.log(111);
+                                that.list = res.data.teacher;
+                                console.log(that.list);
+                            }
+
+                        })
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

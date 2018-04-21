@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./css/collection.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>收藏</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<div v-for="item in blog_list" class="content-list">
+		<!-- <a :href="'infor.html?id='+item.id"> -->
+			<div class="list">
+				<h3 v-text="item.title"></h3>
+				<p class="keyword">
+					<span class="life" v-text="item.classify_name"></span>
+					<span class="csdn" v-text="item.username"></span>
+					<span>{{ item.read_num}}人阅读</span>
+					<span class="date" v-text="item.date"></span>
+					<span @click="cancetCollection(item)" class="close">取消收藏</span>
+				</p>
+			</div>
+		<!-- </a> -->
+	</div>	
+</div>
+	<script type="text/javascript" src="./js/collection.js"></script>
+</body>
+</html>

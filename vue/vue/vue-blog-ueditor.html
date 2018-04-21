@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<script type="text/javascript" src="./ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="./ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript" src="./ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<style type="text/css">
+	select {
+		width: 200px;
+		height: 40px;
+	}
+	input[name="title"] {
+		width: 300px;
+		height: 40px;
+	}
+</style>
+<body>
+	<div id="main">
+		<p><input v-model="title" type="text" name="title"></p>
+		<script id="container" name="content" type="text/plain"></script>
+		<p>
+			<select v-model="class_id">
+				<option value="5" selected="selected">日记</option>
+				<option value="4">it</option>
+			</select>
+		</p>
+		<button @click="issue">发布</button>
+	</div>
+    <script type="text/javascript">
+    	var editor = new Vue({
+    		el: "#main",
+    		data: {
+    			title: "",
+    			class_id: ""
+    		},
+    		mounted: function(){
+    			var ue = UE.getEditor('container');
+    		},
+    		methods: {
+    			getUeditorContent: function(){
+    				return UE.getEditor('container').getContent()
+    			},
+    			issue: function(){
+    				$.ajax({
+    					"url": "http://blog.com/api/blog/doAdd",
+    					"type": "post",
+    					"dataType": "json",
+    					"data": {
+    						"user_id": '36',
+    						"title": this.title,
+    						"content": this.getUeditorContent(),
+    						"classify_id": this.class_id,
+    					},
+    					success: function(res){
+    						if(res.error_code == 0){
+    							alert("发布成功即将跳转。。。。。。");
+    							window.location.href="./vue-blog-list.html"
+    						}else {
+    							alert(res.message);
+    						}
+    					}
+    				})
+    			}
+    		}
+    	})
+    </script>
+</body>
+</html>

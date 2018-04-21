@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/infor.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.fullPage.js"></script>
+	<title>详情</title>
+</head>
+<body>
+	<div id="app">
+		<div class="main">
+			<div class="head-bar">
+				<div class="head-list">
+					<img src="./images/return.png">
+				</div>
+				<div class="head-logo">
+					<img src="./images/infor-csdn.png">
+				</div>
+				<div class="search-login">
+					<div class="sear">
+						<img src="./images/search.png">
+					</div>
+					<div class="login" :class=" uId==null? 'show':'hide' ">
+						<a href="./login.html">登录</a>
+					</div>
+					<div class="login" v-show="uId">
+						<a href="./my.html">
+							<img src="./images/csdn.png">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="my">
+				<img src="./images/pic.png">
+				<span class="name">程序员大咖</span>
+				<div class="concern" @click="clickAttention">关注</div>
+			</div>
+			<div class="title-text" >
+				<div class="tittle">
+					<h1 class="article_title" v-text="blog_info.title"></h1>
+					<p class="trun-read">
+						<span>转载</span>
+						<span v-text="blog_info.date"></span>
+						<span>阅读 123456</span>
+					</p>
+				</div>
+				<div class="text" :class="showAll ? '' : 'all-read' ">
+				   <hr>
+				   <p class="attention">点击上方“<span>程序员大咖</span>”，选择“置顶公众号”</p>
+				   <p class="linchpin">关键时刻，第一时间送达!</p>
+				   <p class="hr-img"><img src="./images/hr.png"></p>
+				   <p>
+						<span v-text="blog_info.content">
+						</span>
+					</p>
+					<!-- <p>
+						<span>
+							<img src="./images/p.png">
+						</span>
+					</p>
+					<p>
+						<span>
+							</br>
+						</span>
+					</p>
+					<p>
+						<span>
+							编者按：是的，为什么你们这帮程序猿整天就只想写代码？难道做什么不比怎么做更重要吗？但凡你对公司有点奉献精神对业务有点关心的话都不会这样，一切都是你的错，对吧？不对，《Habits That Harm Your Technical Team》作者Marcus Blankenship说错不在程序员，错在你们这帮领导。
+						</span>
+					</p>
+					<p>
+						<span>
+							</br>
+						</span>
+					</p>
+					<p>
+						<span>
+							<img src="./images/man.png">
+						</span>
+					</p>
+					<p>
+						<span>
+							</br>
+						</span>
+					</p>
+						<p>
+						<span>我面试Jamie的时候，他看起来就像一位狂热的工程师。技术技能可靠，对流程和产品改进有想法，也有着很好的团队合作态度，是个明显的选择。
+						</span>
+					</p> -->
+					<p>
+						<span>
+							</br>
+						</span>
+					</p>
+				</div>
+			</div>
+			<div class="read-all" :class="showAll ? 'show' : 'hide' " @click="clickClose">
+				<a href="javascript:viod()">阅读全文</a>
+			</div>
+			<div class="user-infor">
+				<div class="pic-name">
+					<img src="./images/chengxuyuan.png">
+					<span>程序员大咖</span>
+				</div>
+				<div class="user-blog-data">
+					<span>访问量</span>
+					<span>36万+</span>
+					<span>原创 </span>
+					<span>187</span>
+					<span>博主更多文章></span>
+				</div>
+			</div>
+			<div class="comment">
+				<div class="comment-title">
+					<span class="comment-num">9条评论</span>
+					<span class="write-comment">写评论</span>
+				</div>
+				<ul>
+					<li class="comment-content">
+						<div class="comment-user">
+							<div class="comment-user-infor">
+								<img src="./images/chengxuyuan.png">
+								<span>qq_2236851479</span>
+							    <div class="reply">回复</div>
+							</div>
+						</div>
+						<div class="comment-info">
+							<span>能有点奉献精神吗？</span>
+							<div class="comment_time">
+								2018-04-12 07:46:11 
+								<span class="floor">#9楼</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li class="comment-content">
+						<div class="comment-user">
+							<div class="comment-user-infor">
+								<img src="./images/chengxuyuan.png">
+								<span>qq_2236851479</span>
+							    <span class="reply">回复</span>
+							</div>
+						</div>
+						<div class="comment-info">
+							<span>能有点奉献精神吗？</span>
+							<div class="comment_time">
+								2018-04-12 07:46:11 
+								<span class="floor">#9楼</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="foot">
+				<div class="like-btn">
+					<i></i>
+					<span>点赞</span>
+					<span>3</span>
+				</div>
+				<div class="comment-btn">
+					<i></i>
+					<span>评论</span>
+					<span>9</span>
+				</div>
+				<div class="collection"  @click="colleCtion">
+					<i></i>
+					<span>收藏</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="./js/infor.js"></script>
+	
+</body>
+</html>

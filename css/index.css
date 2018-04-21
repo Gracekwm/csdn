@@ -1,0 +1,128 @@
+html, body{
+	/*font-size: 62.5%;*/
+}
+html,  body, ul, li, img, h3, p{
+	padding: 0;
+	margin: 0;
+}
+ul{
+	list-style: none;
+}
+ul li{
+	float: left;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+.search-login .show{
+	display: block;
+}
+.hide{
+    display: none;
+}
+.head-bar{
+	font-size: 12px;
+    line-height: 18px;
+    background: #fff;
+    padding: 14px 16px;
+    /*height: 52px;*/
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.head-list, .head-logo{
+    float: left;
+}
+.head-list{
+	margin: 4px;
+}
+.head-list img{
+	width: 20px;
+	height: 20px;
+}
+.head-logo{
+    width: 120px;
+    height: 30px;
+	position: absolute;
+	left: 50%;
+	margin-left: -60px;
+}
+.head-logo img{
+    width: 115px;
+    height: 28px;
+    margin-top: -3px;
+
+}
+.search-login{
+	float: right;
+}
+.sear{
+	margin-right: 10px;
+	float: left;
+}
+.sear img{
+	margin-left: 2px;
+	width: 30px;
+    height: 30px;
+    margin-top: -3px;
+}
+.login{
+	float: right;
+	margin-top: 2px;
+	margin-right: 30px;
+	font-size: 14px;
+    color: #C92027;
+}
+.login img{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    border-radius: 12px;
+}
+.nar{
+	margin-top: 62px;
+	padding-left: 20px;
+    width: 100%;
+    height: 35px;
+    background-color: #EBEBEB;
+}
+.nar-list{
+	padding-top: 10px;
+    height: 20px;
+    overflow-x: auto;
+    overflow-y:hidden;	
+}
+.nar-list li{
+	display: block;
+    margin-right: 24px;
+    line-height: 19px;
+    font-size: 19px;
+    color: #4f4f4f;
+    white-space: nowrap;
+}
+.swiper-slide img{
+	height: 150px;
+	width: 100%;
+}
+.list{
+	padding: 20px;
+}
+.keyword{
+	padding: 10px 0;
+}
+.keyword span{
+	font-size: 14px;
+	margin-right: 10px;
+}
+.keyword .csdn, .keyword .date{
+	color: #4f4f4f;
+}
+.keyword .life{
+	color: #349edf;
+}
+.keyword .close{
+	float: right;
+}

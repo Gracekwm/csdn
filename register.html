@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/register.css">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>注册</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.fullPage.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="main">
+			<div class="container container-custom">
+	        <div class="row all-login">
+	            <div class="login-alls col-xs-12 col-sm-6 col-md-5 col-lg-5">
+		            <div class="login-all">
+		                <h3>帐号登录</h3>
+		                <div class="user-info">
+			                <div class="user-part">
+			                    <form>
+				                    <input v-model="phone" class="user-name" tabindex="1" placeholder="邮箱/手机号">
+				                    <input v-model="password" tabindex="2" placeholder="输入密码" class="pass-word" type="password" autocomplete="off">
+				                    <input v-model="uname" class="username" tabindex="3" placeholder="输入用户名">
+				                    <div class="row forget-password clearfix">
+				                    	<span class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				                        	<input type="checkbox"  value="true" checked="checked" class="auto-login" tabindex="4">
+				                        	<label for="rememberMe">下次自动登录</label>
+				                        </span>
+				                        <span class="col-xs-6 col-sm-6 col-md-6 col-lg-6 forget tracking-ad" data-mod="popu_26">
+				                        	<a href="javascript:void()" tabindex="5" >忘记密码</a>
+				                        </span>
+				                    </div>
+									<input @click="clickLogin" class="logging" accesskey="l" value="注册" tabindex="5" type="button">
+								</form>
+			                </div>
+		                </div>
+			            <div class="third-part tracking-ad" data-mod="popu_27">
+			              	<span style="width: 257px;">第三方帐号登录</span>
+			              	<a  href="javascript:void()" class="qq" target="_blank"></a>
+			              	<a href="javascript:void()" class="sina" target="_blank"></a>
+			              	<a href="javascript:void()" class="baidu" target="_blank"></a>
+			              	<a href="javascript:void()" class="cc" target="_blank"></a>
+			              	<a href="javascript:void()" class="github" target="_blank"></a>
+			                <div class="register-now">
+			                	<span>还没有CSDN帐号？</span>
+				                <span class="register tracking-ad" data-mod="popu_28">
+				                	<a href="javascript:void()" data-kuick="{&quot;act&quot;:&quot;csdn05&quot;,&quot;desc&quot;:&quot;立即注册&quot;}" target="_blank">立即注册</a>
+				                </span>
+		               		</div>
+	               		</div>
+        			</div>
+       			</div>
+    		</div>
+  		</div>
+	</div>
+</div>
+<script type="text/javascript" src="./js/register.js"></script>
+	
+</body>
+</html>

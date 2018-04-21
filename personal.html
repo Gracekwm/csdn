@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./css/personal.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>管理我的博客</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<div v-for="item in blog_list" class="content-list">
+		<div class="list">
+		    <a :href="'infor.html?id='+item.id">
+				<h3 v-text="item.title"></h3>
+				<p class="keyword">
+					<span class="life" v-text="item.classify_name"></span>
+					<span class="csdn" v-text="item.username"></span>
+					<span>{{ item.read_num}}人阅读</span>
+					<span class="date" v-text="item.date"></span>
+					<a :href="'updata.html?id='+item.id" class="edi">
+						<span>编辑</span>
+					</a>
+				</p>
+		    </a>
+			<img @click="delBlog(item)" class="close" src="./images/close.png">
+		</div>
+	</div>	
+</div>
+
+	<script type="text/javascript" src="./js/personal.js"></script>
+	
+</body>
+</html>

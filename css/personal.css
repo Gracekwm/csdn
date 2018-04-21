@@ -1,0 +1,44 @@
+html,  body, ul, li, img, h3, p{
+	padding: 0;
+	margin: 0;
+}
+ul{
+	list-style: none;
+}
+ul li{
+	float: left;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+.list{
+	position: relative;
+	padding: 20px;
+}
+.keyword{
+	padding: 10px 0;
+}
+.keyword span{
+	font-size: 14px;
+	margin-right: 10px;
+}
+.keyword .csdn, .keyword .date{
+	color: #4f4f4f;
+}
+.keyword .life{
+	color: #349edf;
+}
+.keyword .edi{
+	display: inline-block;
+	float: right;
+	color: #f55555;
+	margin-right: 10px;
+}
+.close{
+	display: inline-block;
+	position: absolute;
+	top: 30px;
+	right: 40px; 
+	left: initial;
+}

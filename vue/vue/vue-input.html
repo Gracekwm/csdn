@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+	<style type="text/css">
+		.hide {
+			display: none;
+		}
+		span {
+			cursor: pointer;
+		}
+		.input-box, input[name='text-value'] {
+			width: 200px;
+			height: 30px;
+
+		}
+		.absolute-span {
+			position: absolute;
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<div class="input-box">
+			<input v-model="textValue" type="text" name="text-value">
+			<span class="absolute-span" @click="clearValue" :class="textValueLength ? '' : 'hide'">x</span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var inputValue = new Vue({
+			el: "#main",
+			data: {
+				textValue: "",
+				textValueLength: false,
+			},
+			watch: {
+				textValue: function(){
+					console.log(this.textValue);
+					if(this.textValue.length > 0) {
+						this.textValueLength = true;
+					} else {
+						this.textValueLength = false;
+					}
+				}
+			},
+			methods: {
+				clearValue: function(){
+					this.textValue = "";
+				}
+			}
+		})
+	</script>
+</body>
+</html>

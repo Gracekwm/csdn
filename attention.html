@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/attention.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>我的关注</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<div class="user-infor" v-for="item in myatt_Lists">
+		<div class="pic-name">
+			<img :src="item.image">
+			<span v-text="item.uname">程序员大咖</span>
+		</div>
+		<div class="user-blog-data">
+			<span>创建时间</span>
+			<span v-text="item.createtime"></span>
+			<span>电话 </span>
+			<span v-text="item.phone">187</span>
+			<span>email</span>
+			<span v-text="item.email">187</span>
+		</div>
+		<div class="del" @click="notAttention(item)">
+			<span>取消关注</span>	
+		</div>
+	</div>
+	
+</div>
+	
+
+<script type="text/javascript" src="./js/attention.js"></script>
+</body>
+</html>
