@@ -28,26 +28,5 @@
    
    	* 然后用ajax的方法取到数据详情页所需数据，保存取到的数据就可以进行渲染了<br>
     ```
-    	getData: function(){
-	var that = this;
-	that.uId = window.localStorage.getItem("uid");
-	$.ajax({
-		url:"http://egblog.com/api/blog/info",
-		type:"get",
-		dataType:"json",
-		data:{
-					'id':getSearchData().id,
-					'classify_id':getSearchData().classfy,
-				},
-				success:function(res){
-					that.blog_info = res.data.blog_info;
-					that.uId = res.data.blog_info.id;
-					that.related_blog = res.data.related_blog;
-					that.content = res.data.blog_info.content;
-				},
-				error: function(error){
-					alert("详细信息获取错误")
-				},
-			});
-		},
+    		
     ```
