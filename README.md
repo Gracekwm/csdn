@@ -25,16 +25,17 @@
     return args;
    }
    ```
-    * 然后用ajax的方法取到数据详情页所需数据，保存取到的数据就可以进行渲染了<br>
+   
+   	* 然后用ajax的方法取到数据详情页所需数据，保存取到的数据就可以进行渲染了<br>
     ```
-    getData: function(){
-			var that = this;
-		  that.uId = window.localStorage.getItem("uid");
-			$.ajax({
-				url:"http://egblog.com/api/blog/info",
-				type:"get",
-				dataType:"json",
-				data:{
+    	getData: function(){
+	var that = this;
+	that.uId = window.localStorage.getItem("uid");
+	$.ajax({
+		url:"http://egblog.com/api/blog/info",
+		type:"get",
+		dataType:"json",
+		data:{
 					'id':getSearchData().id,
 					'classify_id':getSearchData().classfy,
 				},
