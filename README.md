@@ -133,9 +133,55 @@ colleCtion: function(){
 点击页面上想要取消收藏文章相应的取消收藏按钮，取消收藏，原理同收藏博客<br>
 #### `4． 收藏文章（取消收藏文章）`<br>
 * 同关注博主（取消关注博主）原理类似。
-#### `5． 发布文章`<br>
+#### `5． 发布文章（博客）`<br>
 * 可以从我的（my.thml）页面，点击写博客，进入发布文章（editor.html）页面。
-* 进入页面之后，用户需要
+* 进入页面之后，用户需要输入标题，内容和选择博客分类。
+* 内容使用百度编辑器完成，用户可以根据自己的需要随心设置文章的样式。
+* 编辑完成之后点击“发布博客”按钮，完成发布博客。
+* 用getUeditorContent()函数获得百度编辑器的内容
+```
+getUeditorContent: function(){
+	return UE.getEditor('editor').getContent();
+}
+```
+* 同样的，点击“发布博客”按钮触发事件的时候也是需要判断用户输入信息的合法性的，不合法就停止执行下面的代码。
+```
+clickPublish: function(){
+			var that = this;
+			var cont = that.getUeditorContent();
+			console.log(cont);
+			var userId = window.localStorage.getItem("uid");
+			console.log(userId);
+			console.log(that.title);
+			if(that.title.length==0||cont.length==0){
+				alert("标题/内容不能为空");
+				return false;
+			}else{
+			};
+			$.ajax({
+				url:"http://egblog.com/api/blog/addblog",
+				type:"post",
+				dataType:"json",
+				data:{
+					'title':that.title,
+					'content':cont,
+					'classify_id':that.class_id,
+					'user_id':userId,
+				},
+				success: function(res){
+					if(res.error_code == 0){
+						alert("发布成功即将跳转。。。。。。");
+						// window.location.href="./manage.html"
+					}else {
+						alert(res.message);
+					}
+    			},
+    			error: function(error){
+    				alert("连接错误！！！")
+    			},
+			});
+		}
+```
 #### `6．编辑修改发布的文章`<br>
 * 可以从我的（my.thml）页面，点击“我的博客”，进入我的博客（personal.html）页面，然后点击相应博客的编辑按钮转编辑博客即文章（editor.html）页面。
 * 编辑修改发布的文章和发布文章用的是同一个界面，只是从编辑接口进来的时候带着文章的id号，在发布文章界面需要判断一下是否有文章id，如果有，就根据文章id找到那篇文章，然后把标题，内容和文章分类赋值到页面上。
@@ -159,5 +205,5 @@ ue.ready(function() {//编辑器初始化完成再赋值
 </div>
 ```
 * 当判断为编辑修改模式后就把isShowPublish设置为false,isShowEditor设置为true.编辑博客样式出现，发布博客样式隐藏
-#### `其他`
+#### `7.其他`
 * 其他涉及内容的原理大多同上述情况相似，不作一一描述。
