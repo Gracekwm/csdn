@@ -1,6 +1,9 @@
 # csdn
 ####  项目整体使用的渲染技术是vue。简单的实现了查看文章详情；关注博主（取消关注博主）；收藏文章（取消收藏文章）；发布文章；编辑修改发布的文章；删除发布的文章，管理我的信息（关注的博主，关注的文章等等）等功能。
-`1．查看文章详情：（infor.html页面）`<br>
+`1.登录及注册`<b>
+	
+##### A.注册时，用户需提供自己的用户名
+`2．查看文章详情：（infor.html页面）`<br>
 * 查看详情需要知道文章的id和分类的id（后`相关文章`推荐要用分类id）从首页传一个文章的文章id号（id）和分类的id号（classify_id），然后根据文章id号取到文章内容。
   * 这两个id号用是用地址栏传参的方式从首页传过来的，在详情页对地址栏进行
   * 用getSearchData()函数进行解析
@@ -51,11 +54,57 @@
 			});
 		},	
     ```
-`2．关注博主（取消关注博主）(infor.html,)`<br>
-#####	Ａ．收藏博客
-点击页面上的收藏按钮，触发收藏
+`2．关注博主（取消关注博主）`<br>
+收藏和取消关注博主都是要在已经登录的情况下
+#####	Ａ．收藏博客(infor.html)
+点击页面上的收藏按钮，触发收藏事件
 * 因为博客的id是唯一的，所以收藏用到的博客地就可以了
-	* 博客id是进入详情页就可以直接取到的，然后调取收藏借口，收藏成功
+	* 博客id是进入详情页就可以直接取到的，然后调取收藏借口，收藏成功<br>
+```
+colleCtion: function(){
+			var blogId = this.blog_info.id;
+			$.ajax({
+				url:"http://egblog.com/api/collect/doadd",
+				type:"post",
+				dataType:"json",
+				data:{
+					'user_id':that.uId,
+					'blog_id':blogId,
+				},
+				success:function(res){
+					alert("已关注博主")
+				},
+				error:function(error){
+					alert("没有取到数据~~~~(>_<)~~~~");
+				},
+			});
+		},
+```
+#####	B．取消收藏博客（从my.html点击“我的收藏”进入到collection.html页面）
+
+我的收藏页面显示自己收藏过的所有文章<br>
+点击页面上想要取消收藏文章相应的取消收藏按钮，取消收藏，原理同收藏博客
+```
+colleCtion: function(){
+			var blogId = this.blog_info.id;
+			$.ajax({
+				url:"http://egblog.com/api/collect/doadd",
+				type:"post",
+				dataType:"json",
+				data:{
+					'user_id':that.uId,
+					'blog_id':blogId,
+				},
+				success:function(res){
+					alert("已关注博主")
+				},
+				error:function(error){
+					alert("没有取到数据~~~~(>_<)~~~~");
+				},
+			});
+		},
+```
+
 `3． 收藏文章（取消收藏文章）`<br>
 `4． 发布文章`<br>
 `5．编辑修改发布的文章`<br>
