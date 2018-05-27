@@ -8,48 +8,58 @@
 触发注册事件之后先用clickLogin（）函数判断用户所填信息是否合理，不合理就不调用注册接口，减少服务器访问次数，合理则调用getData（）函数进行注册。
 ```
 clickLogin: function(){
-			var dataLogin= {
-				'phone':this.phone,
-				'password':this.password,
-				'uname':this.userName,
-			}
+	var dataLogin= {
+		'phone':this.phone,
+		'password':this.password,
+		'uname':this.userName
+	}
 
-			if(this.phone==null){
-				alert("邮箱/手机号不能为空哦(⊙o⊙)");
-				return false;	
-			}
-			if(this.password==null){
-				alert("密码不能为空哦(⊙o⊙)");
-				return false;	
-			}
-			if(this.uname==null){
-				alert("用户名不能为空哦(⊙o⊙)");
-				return false;	
-			}
-			this.getData(dataLogin);
-		}
+	if(this.phone==null){
+		alert("邮箱/手机号不能为空哦(⊙o⊙)");
+		return false;	
+	}
+	if(this.password==null){
+		alert("密码不能为空哦(⊙o⊙)");
+		return false;	
+	}
+	if(this.uname==null){
+		alert("用户名不能为空哦(⊙o⊙)");
+		return false;	
+	}
+	this.getData(dataLogin);
+	}
 ```
 这里getData（）接受的参数是一个对象的形式，是clickLogin（）里面定义的dataLogin，当getData（）接收到这个参数之后，有把其赋给ajax的data
 ```
 getData: function(dataObj){
-			var that = this;
-			$.ajax({
-				url:"http://egblog.com/api/user/doreg",
-				type:"post",
-				dataType:"json",
-				data:dataObj,
-				success:function(res){
-					var a= res;
-					console.log(a);
-				},
-				error:function(error){
-					alert("没有取到数据~~~~(>_<)~~~~");
-				},
-			}); 
-		}
+	var that = this;
+	$.ajax({
+		url:"http://egblog.com/api/user/doreg",
+		type:"post",
+		dataType:"json",
+		data:dataObj,
+		success:function(res){
+			var a= res;
+			console.log(a);
+		},
+		error:function(error){
+			alert("没有取到数据~~~~(>_<)~~~~");
+		},
+	}); 
+}
 ```
 ##### B.登录
 登录同注册同理。
+##### 登录或注册后保存用户信息到本地（用户名、头像、id）,以供后面的收藏文章，关注博主等使用。
+```
+success:function(res){
+	alert("登录成功，返回浏览页面");
+	window.localStorage.setItem("uid",res.data.data.id);
+	window.localStorage.setItem("uimg",res.data.data.image);
+	window.localStorage.setItem("uname",res.data.data.uname);
+	window.history.back(-1);
+},
+```
 #### `2．查看文章详情：（infor.html页面）`<br>
 * 查看详情需要知道文章的id和分类的id（后`相关文章`推荐要用分类id）从首页传一个文章的文章id号（id）和分类的id号（classify_id），然后根据文章id号取到文章内容。
   * 这两个id号用是用地址栏传参的方式从首页传过来的，在详情页对地址栏进行
@@ -109,23 +119,23 @@ getData: function(dataObj){
 	* 博客id是进入详情页就可以直接取到的，然后调取收藏借口，收藏成功<br>
 ```
 colleCtion: function(){
-			var blogId = this.blog_info.id;
-			$.ajax({
-				url:"http://egblog.com/api/collect/doadd",
-				type:"post",
-				dataType:"json",
-				data:{
-					'user_id':that.uId,
-					'blog_id':blogId,
-				},
-				success:function(res){
-					alert("已关注博主")
-				},
-				error:function(error){
-					alert("没有取到数据~~~~(>_<)~~~~");
-				},
-			});
+	var blogId = this.blog_info.id;
+	$.ajax({
+		url:"http://egblog.com/api/collect/doadd",
+		type:"post",
+		dataType:"json",
+		data:{
+			'user_id':that.uId,
+			'blog_id':blogId,
 		},
+		success:function(res){
+			alert("已关注博主")
+		},
+		error:function(error){
+			alert("没有取到数据~~~~(>_<)~~~~");
+		},
+	});
+},
 ```
 #####	B．取消收藏博客（从my.html点击“我的收藏”进入到collection.html页面）
 
@@ -147,40 +157,40 @@ getUeditorContent: function(){
 * 同样的，点击“发布博客”按钮触发事件的时候也是需要判断用户输入信息的合法性的，不合法就停止执行下面的代码。
 ```
 clickPublish: function(){
-			var that = this;
-			var cont = that.getUeditorContent();
-			console.log(cont);
-			var userId = window.localStorage.getItem("uid");
-			console.log(userId);
-			console.log(that.title);
-			if(that.title.length==0||cont.length==0){
-				alert("标题/内容不能为空");
-				return false;
-			}else{
-			};
-			$.ajax({
-				url:"http://egblog.com/api/blog/addblog",
-				type:"post",
-				dataType:"json",
-				data:{
-					'title':that.title,
-					'content':cont,
-					'classify_id':that.class_id,
-					'user_id':userId,
-				},
-				success: function(res){
-					if(res.error_code == 0){
-						alert("发布成功即将跳转。。。。。。");
-						// window.location.href="./manage.html"
-					}else {
-						alert(res.message);
-					}
-    			},
-    			error: function(error){
-    				alert("连接错误！！！")
-    			},
-			});
-		}
+	var that = this;
+	var cont = that.getUeditorContent();
+	console.log(cont);
+	var userId = window.localStorage.getItem("uid");
+	console.log(userId);
+	console.log(that.title);
+	if(that.title.length==0||cont.length==0){
+		alert("标题/内容不能为空");
+		return false;
+	}else{
+	};
+	$.ajax({
+		url:"http://egblog.com/api/blog/addblog",
+		type:"post",
+		dataType:"json",
+		data:{
+			'title':that.title,
+			'content':cont,
+			'classify_id':that.class_id,
+			'user_id':userId,
+		},
+		success: function(res){
+			if(res.error_code == 0){
+				alert("发布成功即将跳转。。。。。。");
+				// window.location.href="./manage.html"
+			}else {
+				alert(res.message);
+			}
+	},
+	error: function(error){
+		alert("连接错误！！！")
+	},
+	});
+}
 ```
 #### `6．编辑修改发布的文章`<br>
 * 可以从我的（my.thml）页面，点击“我的博客”，进入我的博客（personal.html）页面，然后点击相应博客的编辑按钮转编辑博客即文章（editor.html）页面。
